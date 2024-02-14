@@ -1,0 +1,1452 @@
+{% include 'sidebar.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" />
+    <script src="static/js/ajax.js"></script>
+
+    <title>Side Navigation Bar in HTML CSS JavaScript</title>
+    <link rel="stylesheet" href="/static/css/mainStyle.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .card {
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .card-image-column {
+            width: 50%;
+        }
+
+        .profile-image-container {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.1);
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .input-row label {
+            margin-right: 5rem;
+            font-weight: 400;
+            line-height: 1.5;
+            font-size: 1rem;
+            color: rgb(97, 113, 131);
+            cursor: pointer;
+            border-bottom: 1px dashed rgb(81, 97, 115);
+            display: inline;
+            margin-top: 15px;
+        }
+
+        .input-row input,
+        .input-row select {
+            width: 50%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            padding: 0.5rem 0.25rem;
+            box-sizing: border-box;
+            border-bottom: 1px solid #000;
+        }
+
+        /* Adjust the style for the open state */
+        .input-row.active label {
+            margin-right: 5rem;
+            font-weight: 400;
+            line-height: 1.5;
+            font-size: 1rem;
+            color: rgb(97, 113, 131);
+            cursor: pointer;
+            border-bottom: 1px dashed rgb(81, 97, 115);
+            display: inline;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .input-row.active input,
+        .input-row.active select {
+            width: 50%;
+            display: none;
+        }
+
+
+        .my-5 {
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+        }
+
+        .biilCard {
+            background-color: rgb(247, 250, 255);
+        }
+
+
+        .dropdown-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .dropdown {
+            width: 70%;
+        }
+
+        .search-button {
+            width: 25%;
+            background-color: rgb(222, 23, 94);
+            border: none;
+            padding: 10px;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .search-button:hover {
+            background-color: rgb(237, 89, 141);
+        }
+
+        .additional-details {
+            margin-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        .additional-details p {
+            font-size: 1rem;
+        }
+
+        .business-details-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .add-client-button {
+            align-items: center;
+            appearance: none;
+            background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+            border: 0;
+            border-radius: 6px;
+            box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-flex;
+            font-family: "JetBrains Mono", monospace;
+            height: 48px;
+            justify-content: center;
+            line-height: 1;
+            list-style: none;
+            overflow: hidden;
+            padding-left: 10px;
+            padding-right: 10px;
+            position: relative;
+            text-align: left;
+            text-decoration: none;
+            transition: box-shadow .15s, transform .15s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            will-change: box-shadow, transform;
+            font-size: 18px;
+        }
+
+        .add-client-button:focus {
+            box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+        }
+
+        .add-client-button:hover {
+            box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+            transform: translateY(-2px);
+        }
+
+        .add-client-button:active {
+            box-shadow: #3c4fe0 0 3px 7px inset;
+            transform: translateY(2px);
+        }
+
+
+        .download-button {
+            background-color: rgb(23, 192, 222);
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .download-icon {
+            margin-right: 8px;
+        }
+
+
+        .download-button {
+            background-color: rgb(23, 192, 222);
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .download-icon {
+            margin-right: 8px;
+        }
+
+        .dotted-line {
+            width: 13%;
+            border-bottom: 2px dotted #000;
+            margin-top: 8px;
+            margin-left: auto;
+            /* Center horizontally */
+            margin-right: auto;
+            /* Center horizontally */
+        }
+
+        /* Additional styles for centering the text */
+        .d-flex {
+            display: flex;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        thead {
+            font-weight: bold;
+            background: rgb(115, 61, 217);
+
+            color: #fff;
+        }
+
+
+        th {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .payment-table {
+            border: none;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            background: inherit;
+            font-size: 14px;
+            padding: 0.5rem 0.25rem;
+            border-bottom: 1px solid #000;
+        }
+
+        .addcard {
+            border: 2px dotted #000;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+
+        .btn-close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: .25rem;
+            border: none;
+            background-color: transparent;
+
+            &:hover,
+            &:focus {
+                background-color: var(--c-action-primary-accent);
+            }
+        }
+
+
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+
+        .upload-area {
+            margin-top: 1.25rem;
+            background-color: #ffffff;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .upload-area h4 {
+            margin-bottom: 1rem;
+        }
+
+        .upload-area p {
+            margin: 0;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .upload-area span {
+            font-weight: lighter;
+            color: #555;
+            /* Adjust the color as needed */
+            margin-left: 1rem;
+        }
+
+        .icon {
+            color: rgb(115, 61, 217);
+            margin-right: 5px;
+        }
+
+        /* Add these styles to your existing styles */
+
+        .terms-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(115, 61, 217);
+            margin-bottom: 15px;
+            border-bottom: 2px dotted #000;
+            width: 25%;
+        }
+
+
+
+        .term-label {
+            font-weight: bold;
+            font-size: 16px;
+            color: rgb(115, 61, 217);
+            margin-right: 10px;
+        }
+
+        .term-input {
+            padding: 8px;
+            width: 100%;
+            border: none;
+            background: inherit;
+            border-bottom: 1px solid #000;
+            outline: none;
+        }
+
+
+        .remove-term {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: rgb(115, 61, 217);
+            font-size: 24px;
+            outline: none;
+        }
+
+
+
+        .action-buttons button {
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #733dd9;
+        }
+
+        .close-button {
+            background-color: rgb(222, 23, 94);
+            border: none;
+            padding: 10px;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .save-button {
+            background-color: rgba(0, 0, 0, 0.801);
+            border: none;
+            padding: 10px;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .saveDraft {
+            background-color: transparent;
+            padding: 10px;
+            color: #000000;
+            border-radius: 5px;
+            border: 1px solid #000;
+        }
+
+        .editor-container {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            background-color: rgb(247, 250, 255);
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: rgb(115, 61, 217);
+            border-bottom: 1px solid #ccc;
+            color: #ffff;
+            border-radius: 5px;
+
+        }
+
+        .header span {
+            font-weight: bold;
+        }
+
+        .close-icon {
+            padding: 5px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .toolbar {
+            display: flex;
+            background-color: #ffff;
+        }
+
+        .toolbar-btn {
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            margin-left: 20px;
+        }
+
+        .toolbar-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .editor {
+            flex: auto;
+            padding: 10px;
+            overflow-y: auto;
+            height: 200px;
+            /* Set your desired height here */
+        }
+
+        .my4 {
+            border-top: 2px solid #000;
+            /* Set the color to black for a dark appearance */
+            font-weight: bold;
+            /* Make the line bold */
+        }
+
+        .modal-header {
+            background-color: rgb(101, 57, 192);
+            color: #ffff;
+        }
+
+        .modal-content {
+            width: 200%;
+            margin-left: -15rem !important;
+            background-color: #fff;
+            color: rgb(0, 0, 0);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+
+        <!-- Modal for Add Client -->
+        <span id="username" hidden>{{session.get('username')}}</span>
+
+        <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-labelledby="addClientModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content mx-auto">
+
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Client</h4>
+                        <button type="button" class="close " data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+
+                        <div class="row mx-1">
+
+                            <div class="col-lg-6">
+                                <form>
+
+                                    <label for="">Client's Business Name
+                                        <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="client">
+                                    <br>
+                                    <label for="">Client's Position
+                                        <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="Position">
+                                    <br>
+                                    <label for="s_country">Select Country
+                                        <span class="text-danger">*</span></label><br>
+                                    <select class=" form-control form-select" id="s_country"
+                                        aria-label="Default select example">
+                                        <option selected></option>
+                                        <option value="India">India</option>
+                                        <option value="Uk">United Kingdom (Uk)</option>
+                                        <option value="US">United States of America (US)</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="Canada">Canada</option>
+                                    </select>
+
+                                </form>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <form>
+
+                                    <label for="">Client Industry
+                                    </label>
+                                    <input type="text" class="form-control" id="industry">
+
+                                    <label for="" class="m-3">City
+                                    </label>
+                                    <input type="text" class="form-control" id="city">
+
+
+
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <!-- tax information -->
+
+                        <!-- Tax Information -->
+                        <div class="row mx-1 mt-5" id="tax">
+                            <div class="col-lg-12">
+                                <h6>Tax Information <span class="text-muted">(optional)</span>
+                                    <i class="fa fa-angle-down" id="tab_1" aria-hidden="true"></i>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row mx-1" id="show_1">
+                            <div class="col-lg-6 my-4">
+                                <label for="" class="vat-label">VAT Number</label>
+
+                                <input type="text" class="form-control" id="vat">
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="row mt-5 mx-1">
+                            <div class="col-lg-12">
+                                <h6>Address <span class="text-muted">(optional)</span>
+                                    <i class="fa fa-angle-down" id="tab_2" aria-hidden="true"></i>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row mx-1 my-4" id="show_2">
+                            <div class="col-lg-6">
+                                <label for="" class="">State / Province</label>
+                                <input type="text" class="form-control" id="state">
+                                <br>
+                                <label for="" class="">Postal Code / Zip Code</label>
+                                <input type="text" class="form-control" id="zip">
+                            </div>
+
+                            <div class="col-lg-12 my-3">
+                                <label for="" class="">Street Address</label>
+                                <input type="text" class="form-control" id="steet">
+                            </div>
+                        </div>
+
+                        <!-- Additional Details -->
+                        <div class="row mt-5 mx-1">
+                            <div class="col-lg-12">
+                                <h6>Additional Details <span class="text-muted">(optional)</span>
+                                    <i class="fa fa-angle-down" id="tab_3" aria-hidden="true"></i>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row mx-1 my-4" id="show_3">
+                            <div class="col-lg-6">
+                                <label for="" class="">Business Alias (Nick Name)</label>
+                                <input type="text" class="form-control" id="Nick">
+                                <br>
+                                <label for="" class="">Email</label>
+                                <input type="text" class="form-control" id="Email">
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label for="" class="">Unique Key</label>
+                                <input type="text" class="form-control" id="Key">
+                                <br>
+                                <label for="" class="">Phone Number</label>
+                                <input type="text" class="form-control" list="Number" id="Number">
+                                <datalist id="Number">
+                                    <option value="123456789">
+                                    <option value="000000078">
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <!-- Bank Details -->
+                        <div class="row mt-4 mx-1">
+                            <div class="col-lg-12 ">
+                                <div class="d-flex  justify-content-between">
+                                    <h6 class="py-4">Bank Details</h6>
+                                    <i id="bank_tab" aria-hidden="true" class="fa fa-angle-down angle py-4"></i>
+                                </div>
+
+                                <div class="bank" id="show_bank">
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">Account Holder Name</label>
+                                        <input type="text" placeholder="Account Holder Name" id="account_h"
+                                            class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">Account Number</label>
+                                        <input type="text" placeholder="Account Number" id="account_n"
+                                            class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">IFSC</label>
+                                        <input type="text" placeholder="IFSC" id="ifsc" class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">SWIFT</label>
+                                        <input type="text" placeholder="SWIFT" id="swift" class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">Bank</label>
+                                        <input type="text" placeholder="Bank" id="bank" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- bank details end -->
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn text-center btn-success px-3 " onclick="add_client(), addClientToDropdown() "
+                            data-dismiss="modal">Save &
+                            Continue </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal for Add Tax -->
+        <div class="modal fade" id="addTaxModal" tabindex="-1" role="dialog" aria-labelledby="addTaxModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addClientModalLabel">Choose Taxation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <select class="form-control tax-select mx-5" aria-label="Default select example"
+                                id="taxSelect">
+                                <option selected value="0">None</option>
+                                <option class="" value="GST">GST (India)</option>
+                            </select>
+
+                            <div class="gst-tab d-none">
+                                <h6 class=" mt-4 mx-5">Gst Type <span class="text-danger">*</span></h6>
+                                <div class="row ml-4">
+                                    <div class=" mt-4 col-lg-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                id="flexRadioDefault1">
+                                            <label class="form-check-label gst-tab1"
+                                                for="flexRadioDefault1">IGST</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input gst-tab2" type="radio"
+                                                name="flexRadioDefault" id="flexRadioDefault2">
+                                            <label class="form-check-label" for="flexRadioDefault2">CGST & SGST</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="save-button" data-dismiss="modal" id="close_content">Close</button>
+                        <button type="button" data-dismiss="modal" class=" close-button" id="save_content">Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center">
+            <h1 class="dotted-line">Invoice</h1>
+        </div>
+        <div class="card-body">
+            <div class="input-group">
+                <div class="input-row">
+                    <label for="invoiceNo">Invoice No</label>
+                    <select name="invoice_option" id="invoice_option"
+                        onchange="updateInvoiceInput(),get_invoice(), get_all()">
+                        <!-- Add more predefined options as needed -->
+                        <option value="" selected disabled style="display: none;"> Enter Your Invoice</option>
+                        <option value="other" style="font-size: 18px; font-weight: bold; color: #0b7dda;">Create New
+                            Invoice +</option>
+                        <hr>
+                        {% for invoice in invoice_no %}
+                        <option value="{{invoice.get('invoice_no')}}">{{invoice.get('invoice_no')}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-row active">
+                    <label for="custom_invoice" id="custom_invoice_label">Custom Invoice</label>
+                    <input type="text" name="custom_invoice" id="custom_invoice_input" style="display: none;"
+                        placeholder="Enter custom invoice number">
+                </div>
+
+                <div class="input-row">
+                    <label for="invoiceDate">Invoice Date</label>
+                    <input type="date" id="invoiceDate">
+                </div>
+
+                <div class="input-row">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate">
+                </div>
+            </div>
+
+            <!-- Image Column -->
+            <div class="card-image-column">
+                <div class="profile-image-container">
+                    <h4>Profile Image</h4>
+                    <img id="profileImage" alt="Profile Image" class="profile-image">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <!-- First Card Column -->
+            <div class="col-md-6">
+                <div class=" p-5  biilCard">
+                    <p class="modal-title">Billed By</p>
+                    <div class="upload-area" style="background-color: #FFF;">
+                        <h4>Business details</h4>
+                        {%for row in detail: %}
+                        <p>{{row.get('bussiness_name')}}</p>
+                        <p>{{row.get('address')}}</p>
+                        <p>GSTIN:<span>{{row.get('gst')}}</span></p>
+                        <p>PAN:<span>{{row.get('pancard_number')}}</span></p>
+
+                        {%endfor%}
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Second Card Column -->
+            <!-- <div class="billed_2"> -->
+            <div class="col-md-6 billed_2">
+                <div class="card p-3 text-center biilCard">
+                    <p class="mb-3">Bill To</p>
+                    <div class="dropdown-container">
+                        <select class="form-control dropdown" id="billed_to">
+                            <option value=""></option>
+                            {% for client in client: %}
+                            <option value="{{client.get('Business_name')}}">
+                                {{client.get('Business_name')}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <button class="search-button" id="search_" onclick="fetch_client()">Search</button>
+                    </div>
+                    <div class="business-details-container">
+                        <div>
+                            Business Details
+                        </div>
+                        <button class="add-client-button" data-toggle="modal" data-target="#addClientModal">+ Add
+                            Client</button>
+
+                    </div>
+                    <div class="additional-details mr-auto Billed_size" id="client_business">
+                        <div class="d-none row">
+                            <p class="fs-2">Business Name:</p>
+                            <p class="fs-2 ml-3 weight">businessDetail.name</p>
+                        </div>
+                        <div class="d-none row">
+                            <p class="fs-2">Address:</p>
+                            <p class="fs-2 ml-3 weight">businessDetail.address</p>
+                        </div>
+                        <div class="d-none row">
+                            <p class="fs-2">GST NO.</p>
+                            <p class="fs-2 ml-3 weight">businessDetail.gstno</p>
+                        </div>
+                        <div class="d-none row">
+                            <p class="fs-2">PAN NO.</p>
+                            <p class="fs-2 ml-3 weight">businessDetail.panNo</p>
+                        </div>
+                        <div class="d-none row">
+                            <p class="fs-2">VAT NO.</p>
+                            <p class="fs-2 ml-3 weight"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6 mt-4 d-flex justify-content-center">
+                <button class="download-button mb-2" data-toggle="modal" data-target="#addTaxModal">
+                    <i class='download-icon fa fa-plus'></i>Add Tax
+                </button>
+            </div>
+            <div class="col-md-6">
+                <p class="mb-2">Select Currency</p>
+                <select class="form-control custom-select-width mb-2" id="currencySelector">
+                    <option value="inr">INR</option>
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                    <option value="gbp">GBP</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Payment Table Row -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <!-- Add your items table HTML and content here -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col" class="d-none gst-tab">GST</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Rate</th>
+                            <th scope="col" class="d-none igst-tab">IGST</th>
+                            <th scope="col" class="d-none cgst-tab">CGST</th>
+                            <th scope="col" class="d-none sgst-tab">SGST</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"></th> <!-- New column for the cross icon -->
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: rgb(247, 250, 255);">
+                        <tr>
+                            <td><input type="text" class="form-control payment-table" placeholder="Item"></td>
+                            <td class="d-none gst-tab"><input type="number" class="form-control payment-table"
+                                    placeholder="GST" oninput="updateAmount(this)"></td>
+                            <td><input type="number" class="form-control payment-table" placeholder="Quantity"
+                                    oninput="updateAmount(this)"></td>
+                            <td><input type="number" class="form-control payment-table" placeholder="Rate"
+                                    oninput="updateAmount(this)"></td>
+
+                            <td class="d-none igst-tab"><input type="number" class="form-control payment-table"
+                                    placeholder="IGST" oninput="updateAmount(this)"></td>
+                            <td class="d-none cgst-tab"><input type="number" class="form-control payment-table"
+                                    placeholder="CGST" oninput="updateAmount(this)"></td>
+                            <td class="d-none sgst-tab"><input type="number" class="form-control payment-table"
+                                    placeholder="SGST" oninput="updateAmount(this)"></td>
+                            <td><input type="number" class="form-control payment-table" placeholder="Amount">
+                            </td>
+                            <td><input type="text" class="form-control payment-table" placeholder="Total" readonly></td>
+                            <td><i class="fas fa-times" onclick="removeRow(this)"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Add Row Button -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="addcard p-3 text-center biilCard" onclick="addRow()">
+                            <!-- New content for the first card -->
+                            <i class="fa fa-plus-square-o icon" aria-hidden="true"></i> Add New Line
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <!-- Your existing content here (invoice form, client details, etc.) -->
+            </div>
+
+            <div class="col-md-6">
+                <h5 class="mb-3"><i class="fa fa-tag icon" aria-hidden="true"></i> Add
+                    Discounts/Additional Charges</h5>
+                <!-- Line Separator -->
+                <hr class="my4">
+                <!-- Total INR -->
+                <div class="row mb-2 p-4">
+                    <div class="col-6" id="totalContainer">
+                        <h2>Total (INR)</h2>
+                    </div>
+                    <div class="col-6 text-right ">
+                        <!-- Assume 'totalINR' is a variable representing the total INR value -->
+                        <strong id="totalINR">₹0</strong>
+                    </div>
+                </div>
+                <!-- Line Separator -->
+                <hr class="my4">
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="addcard p-3 text-center biilCard" onclick="toggleTermsConditionBox()">
+                            <!-- New content for the first card -->
+                            <i class="fa fa-plus-square-o icon" aria-hidden="true"></i> Add Term & Condition
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="addcard p-3 text-center biilCard" id="addnotes" onclick="toggleEditor()">
+                            <!-- New content for the second card -->
+                            <i class="fa fa-address-book-o icon" aria-hidden="true"></i> Add Note
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="addcard p-3 text-center biilCard" onclick="addAttachment()">
+                            <!-- New content for the third card -->
+                            <i class="fa fa-paperclip icon" aria-hidden="true"></i> Add Attachments
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms&Condition -->
+        <div class="card-body biilCard mt-4 " id="termsConditionBox">
+
+            <div class="input-group">
+                <p class="terms-title">Terms and Conditions</p>
+
+                <div class="terms-and-conditions p-3">
+                    <div class="term-group">
+                        <div class="row align-items-center" id="terms_">
+                            <span class="term-label ">1.</span>
+                            <input type="text" class="term-input col-9"
+                                value="Please quote invoice number when remitting funds.">
+                            <button class="remove-term col-1" aria-label="Remove Term">&#x2715;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="add-term" aria-label="Add New Term">+ Add New Term</button>
+                </div>
+                <div style="display: flex; justify-content: flex-end;">
+                    <button class="close-button" aria-label="Close" onclick="toggleTermsConditionBox()">Close Terms
+                        Condition</button>
+                </div>
+
+
+            </div>
+            <!-- Close button in the footer -->
+
+        </div>
+
+
+        <!-- Add Note -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="editor-container">
+                    <div class="header">
+                        <span>Add Note</span>
+                        <button class="close-icon" onclick="closeEditor()">&times;</button>
+                    </div>
+                    <div class="toolbar">
+                        <button class="toolbar-btn" onclick="execCommand('bold')"><strong>B</strong></button>
+                        <button class="toolbar-btn" onclick="execCommand('italic')"><em>I</em></button>
+                        <button class="toolbar-btn" onclick="execCommand('underline')"><u>U</u></button>
+                        <button class="toolbar-btn" onclick="execCommand('insertOrderedList')">&#35;</button>
+                        <button class="toolbar-btn" onclick="execCommand('insertUnorderedList')">&#8226;</button>
+                    </div>
+                    <div class="editor" contenteditable="true" id="textEditor"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="d-flex justify-content-center  mt-4">
+            <button class="saveDraft ">Save & Draft</button>
+            <button class="close-button ml-3" onclick="saveContinue() ,create_invoice() ">Save & Continue</button>
+        </div>
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+    <script src="/static/script.js"></script>
+    <!-- Include js-cookie library -->
+    <script>
+
+        function addClientToDropdown() {
+            var clientInputValue = $('#client').val();
+            $('#billed_to').append('<option value="' + clientInputValue + '">' + clientInputValue + '</option>');
+            $('#billed_to').val(clientInputValue);
+        }
+
+
+        $(document).ready(function () {
+            // Event handler for the tax select dropdown change
+
+
+
+            $('#taxSelect').change(function () {
+                var selectedValue = $(this).val();
+
+                if (selectedValue == 'GST') {
+                    $('.gst-tab').removeClass('d-none');
+                    console.log('User selected GST(India)');
+                } else {
+                    $('.gst-tab').addClass('d-none');
+                    console.log('User selected None');
+                    $('.gst-tab, .igst-tab, .cgst-tab, .sgst-tab').addClass('d-none');
+                    $('input[name="flexRadioDefault"]').prop('checked', false); // Uncheck all radio buttons
+                }
+            });
+
+
+            $('#save_content').click(function () {
+                $('.gst-tab, .igst-tab, .cgst-tab, .sgst-tab').addClass('d-none');
+                if ($('#flexRadioDefault1').is(':checked')) {
+                    $('.gst-tab, .igst-tab').removeClass('d-none');
+                } else if ($('#flexRadioDefault2').is(':checked')) {
+                    console.log('CGST & SGST selected!');
+                    $('.gst-tab, .cgst-tab, .sgst-tab').removeClass('d-none');
+                } else {
+                    $('.gst-tab, .igst-tab, .cgst-tab, .sgst-tab').addClass('d-none');
+                }
+            });
+
+            $('#close_content').click(function () {
+                console.log('close')
+                $('.gst-tab, .igst-tab, .cgst-tab, .sgst-tab').addClass('d-none');
+            });
+
+            function updateTotal(currency) {
+
+                var conversionFactors = {
+                    usd: 75.0,
+                    eur: 90.0,
+                    gbp: 100.0
+                };
+                var selectedCurrency = $("#currencySelector").val();
+                var conversionFactor = conversionFactors[selectedCurrency] || 1.0;
+                var totalInINR = calculateTotalInINR(conversionFactor);
+                $("#totalContainer").html('<h2>Total (' + selectedCurrency.toUpperCase() + ')</h2>');
+            }
+            function calculateTotalInINR(conversionFactor) {
+            }
+            updateTotal();
+            $("#currencySelector").change(function () {
+                updateTotal();
+            });
+
+
+
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const username = `{{session.get('username')}}`
+            const imageElement = document.getElementById('profileImage');
+            fetch(`http://localhost:8080/api/v1/image_path?username=${username.toLowerCase()}`)  // Replace with your Flask endpoint
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a blob URL for the fetched image data
+                    console.log(blob)
+                    const imageUrl = URL.createObjectURL(blob);
+                    imageElement.src = imageUrl;
+
+
+                })
+                .catch(error => console.error('Error fetching image:', error));
+
+            const buttons = document.querySelectorAll('.invoice-option');
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    buttons.forEach(function (btn) {
+                        btn.classList.remove('active-invoice');
+                    });
+                    this.classList.add('active-invoice');
+                });
+            });
+        });
+        function addRow() {
+            // Get the first row of the table
+            var firstRow = document.querySelector('tbody tr');
+
+            // Clone the first row
+            var newRow = firstRow.cloneNode(true);
+
+            // Clear the input values in the new row
+            var inputs = newRow.querySelectorAll('input');
+            inputs.forEach(function (input) {
+                input.value = '';
+            });
+
+            // Append the new row to the tbody
+            var tbody = document.querySelector('tbody');
+            tbody.appendChild(newRow);
+        }
+
+        function updateAmount(input) {
+            var row = $(input).closest('tr');
+            var quantity = parseFloat(row.find('input[placeholder="Quantity"]').val()) || 0;
+            var rate = parseFloat(row.find('input[placeholder="Rate"]').val()) || 0;
+            var gst = parseFloat(row.find('input[placeholder="GST"]').val()) || 0;
+            var cgst = parseFloat(row.find('input[placeholder="CGST"]').val()) || 0;
+            var sgst = parseFloat(row.find('input[placeholder="SGST"]').val()) || 0;
+            var igst = parseFloat(row.find('input[placeholder="IGST"]').val()) || 0;
+
+            var amount = quantity * rate;
+            var total = amount + (amount * gst / 100) + (amount * cgst / 100) + (amount * sgst / 100) + igst;
+
+            if (!isNaN(amount)) {
+                row.find('input[placeholder="Amount"]').val(amount.toFixed(2));
+                row.find('input[placeholder="Total"]').val(total.toFixed(2));
+                updateGrandTotal();
+            }
+        }
+
+        var rowsData = [];
+
+        function updateGrandTotal() {
+            var grandTotal = 0;
+            rowsData = [];
+
+            $('input[placeholder="Total"]').each(function () {
+                var total = parseFloat($(this).val()) || 0;
+                grandTotal += total;
+
+                var row = $(this).closest('tr');
+                var rowData = {
+                    item: row.find('input[placeholder="Item"]').val(),
+                    gst: parseFloat(row.find('input[placeholder="GST"]').val()) || 0,
+                    cgst: parseFloat(row.find('input[placeholder="CGST"]').val()) || 0,
+                    sgst: parseFloat(row.find('input[placeholder="SGST"]').val()) || 0,
+                    igst: parseFloat(row.find('input[placeholder="IGST"]').val()) || 0,
+                    quantity: parseFloat(row.find('input[placeholder="Quantity"]').val()) || 0,
+                    rate: parseFloat(row.find('input[placeholder="Rate"]').val()) || 0,
+                    amount: parseFloat(row.find('input[placeholder="Amount"]').val()) || 0,
+                    total: total
+                };
+
+                rowsData.push(rowData);
+
+            });
+
+            $('input[placeholder="Grand Total"]').val(grandTotal.toFixed(2));
+
+
+            console.log('Rows Data:', rowsData);
+
+            // Update the totalINR element
+            $('#totalINR').text('₹' + grandTotal.toFixed(2));
+        }
+
+
+
+        function removeRow(iconElement) {
+            var row = iconElement.closest('tr');
+            row.remove();
+            updateGrandTotal();
+        }
+
+        function saveContinue() {
+            var termInputs = document.querySelectorAll('.term-input');
+            var termConditions = {};
+            termInputs.forEach(function (termInput, index) {
+                termConditions[index + 1] = termInput.value;
+
+            })
+            var data = document.getElementById('textEditor').innerHTML
+            console.log('NOTE Data:', data);
+            window.localStorage.setItem('items', JSON.stringify(rowsData))
+            window.localStorage.setItem('terms', JSON.stringify(termConditions))
+        }
+
+        function toggleTermsConditionBox() {
+            console.log('hello');
+            var termsConditionBox = document.getElementById('termsConditionBox');
+
+            // Toggle the 'hidden' attribute instead of 'style.display'
+            termsConditionBox.hidden = !termsConditionBox.hidden;
+        }
+
+
+
+        document.addEventListener('click', function (event) {
+            const target = event.target;
+
+            if (target.classList.contains('remove-term')) {
+                target.closest('.term-group').remove();
+                updateTermLabels();
+            }
+
+            if (target.classList.contains('add-term')) {
+                addNewTerm();
+            }
+        });
+
+        function addNewTerm() {
+            const termsContainer = document.querySelector('.terms-and-conditions');
+            const termGroups = document.querySelectorAll('.term-group');
+            const newTermGroup = document.createElement('div');
+            newTermGroup.classList.add('term-group');
+            newTermGroup.innerHTML = `
+        <div class="row align-items-center">
+            <span class="term-label "></span>
+            <input type="text" class="term-input col-9" placeholder="Add new term">
+            <button class="remove-term col-1" aria-label="Remove Term">&#x2715;</button>
+        </div>
+    `;
+            termsContainer.insertBefore(newTermGroup, termGroups[termGroups.length - 1].nextSibling);
+            updateTermLabels();
+        }
+
+        function updateTermLabels() {
+            const termGroups = document.querySelectorAll('.term-group');
+            termGroups.forEach((group, index) => {
+                const label = group.querySelector('.term-label');
+                label.textContent = (index + 1) + '.';
+            });
+        }
+
+        function toggleEditor() {
+            var editor = document.querySelector('.editor-container');
+            editor.style.display = (editor.style.display === 'none' || editor.style.display === '') ? 'block' : 'none';
+        }
+
+        function closeEditor() {
+            var editor = document.querySelector('.editor-container');
+            editor.style.display = 'none';
+        }
+
+        // Add your execCommand function if not defined
+        function execCommand(command) {
+            document.execCommand(command, false, null);
+        }
+
+        function updateInvoiceInput() {
+            var selectElement = document.getElementById("invoice_option");
+            var customInput = document.getElementById("custom_invoice_input");
+            var customLabel = document.getElementById("custom_invoice_label");
+
+            if (selectElement.value === "other") {
+                customInput.style.display = "block";
+                customLabel.style.display = "block";
+                customInput.setAttribute("required", "required");
+            } else {
+                customInput.style.display = "none";
+                customLabel.style.display = "none";
+                customInput.removeAttribute("required");
+            }
+        }
+        $(document).ready(function () {
+            // Hide optional sections initially
+            $("#show_1, #show_2, #show_3, #show_bank").hide();
+
+            // Toggle Tax Information section
+            $("#tab_1").on("click", function () {
+                $("#show_1").toggle();
+                $(".gamech").toggle();
+            });
+
+            // Toggle Address section
+            $("#tab_2").on("click", function () {
+                $("#show_2").toggle();
+            });
+
+            // Toggle Additional Details section
+            $("#tab_3").on("click", function () {
+                $("#show_3").toggle();
+            });
+
+            // Toggle Bank Details section
+            $("#bank_tab").on("click", function () {
+                $("#show_bank").toggle();
+            });
+        });
+
+        function get_all() {
+            const allData = window.localStorage.getItem('response');
+
+            try {
+                // Try to parse the JSON data
+                let data = JSON.parse(allData);
+
+                // Continue with the rest of your code
+                $('#billed_to').val(data.billed_to);
+                const add_note = document.getElementById('textEditor')
+                add_note.innerHTML = data.notes
+
+                document.getElementById('addnotes').click()
+                const total_inr = document.getElementById('totalINR')
+                total_inr.innerHTML = data.total_amount
+                document.getElementById('search_').click();
+
+                const data_tax = data.items;
+                console.log(data_tax[0])
+
+                
+                const terms_cond = JSON.parse(data.add_terms);
+
+                const termsContainer = document.getElementById('terms_');
+
+                // Clear previous data before adding new rows
+                termsContainer.innerHTML = '';
+
+                Object.keys(terms_cond).forEach(function (key) {
+                    const termValue = terms_cond[key];
+
+                    // Create a new row for each term
+                    const newRow = document.createElement('div');
+                    newRow.className = 'row align-items-center';
+
+                    // Create a div for the key
+                    const keyDiv = document.createElement('div');
+                    keyDiv.className = 'col-3';
+
+                    const labelSpan = document.createElement('span');
+                    labelSpan.className = 'term-label';
+                    labelSpan.textContent = key + '.';
+                    keyDiv.appendChild(labelSpan);
+
+                    newRow.appendChild(keyDiv);
+
+                    // Create a div for the value
+                    const valueDiv = document.createElement('div');
+                    valueDiv.className = 'col-7';
+
+                    const inputField = document.createElement('input');
+                    inputField.type = 'text';
+                    inputField.className = 'term-input';
+                    inputField.value = termValue;
+                    valueDiv.appendChild(inputField);
+
+                    newRow.appendChild(valueDiv);
+
+                    // Create a div for the remove icon
+                    const removeDiv = document.createElement('div');
+                    removeDiv.className = 'col-2';
+
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'remove-term';
+                    removeButton.setAttribute('aria-label', 'Remove Term');
+                    removeButton.innerHTML = '&#x2715;';
+                    removeDiv.appendChild(removeButton);
+
+                    newRow.appendChild(removeDiv);
+
+                    termsContainer.appendChild(newRow);
+
+                    // Add a line break between each key, value, and remove icon combination
+                    const lineBreak = document.createElement('div');
+                    lineBreak.className = 'w-100'; // Full-width line break
+                    termsContainer.appendChild(lineBreak);
+
+                    console.log(key + ': ' + termValue);
+                });
+            } catch (error) {
+                // Handle the error (e.g., log it or display a message to the user)
+                console.error('Error parsing JSON data:', error);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

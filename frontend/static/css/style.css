@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+body {
+    overflow-x: hidden;
+}
+
+p {
+    margin: 0
+}
+
+#container {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #e8eaf6;
+    padding: 35px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+
+.logo {
+    background-color: #539ee9;
+    padding: 0.7rem 2rem;
+    outline: none !important;
+    color: white;
+    border-radius: 20px;
+    font-size: 3rem;
+    border: none;
+    margin-bottom: 1rem;
+    margin: 1rem 10rem;
+}
+
+
+
+.box-right {
+    padding: 30px 25px;
+    background-color: white;
+    border-radius: 15px
+}
+
+.box-left {
+    padding: 20px 20px;
+    background-color: white;
+    border-radius: 15px;
+    /* margin-left: -1rem!important; */
+}
+
+.textmuted {
+    color: #7a7a7a
+}
+
+.bg-green {
+    background-color: #d4f8f2;
+    color: #06e67a;
+    padding: 3px 0;
+    display: inline;
+    border-radius: 25px;
+    font-size: 11px
+}
+
+.p-blue {
+    font-size: 14px;
+    color: #1976d2
+}
+
+.fas.fa-circle {
+    font-size: 12px
+}
+
+.p-org {
+    font-size: 14px;
+    color: #fbc02d
+}
+
+.h7 {
+    font-size: 15px
+}
+
+.h8 {
+    font-size: 12px
+}
+
+.h9 {
+    font-size: 10px
+}
+
+.bg-blue {
+    background-color: #dfe9fc9c;
+    border-radius: 5px
+}
+
+.form-control {
+    box-shadow: none !important
+}
+
+.card input::placeholder {
+    font-size: 14px
+}
+
+::placeholder {
+    font-size: 14px
+}
+
+input.card {
+    position: relative
+}
+
+.far.fa-credit-card {
+    position: absolute;
+    top: 10px;
+    padding: 0 15px
+}
+
+.fas,
+.far {
+    cursor: pointer
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.btn.btn-primary {
+    box-shadow: none;
+}
+
+.bg.btn.btn-primary {
+    background-color: transparent;
+    border: none;
+    color: #1976d2
+}
+
+.bg.btn.btn-primary:hover {
+    color: #539ee9
+}
+
+@media(max-width:320px) {
+    .h8 {
+        font-size: 11px
+    }
+
+    .h7 {
+        font-size: 13px
+    }
+
+    ::placeholder {
+        font-size: 10px
+    }
+}
+
+/* =========================== details invoice ================================ */
+
+/* body{
+
+    background-color: #eee;
+}
+
+.container{
+
+    height: 100vh;
+
+} */
+
+
+.card {
+    border: none;
+}
+
+.form-control {
+    border-bottom: 2px solid #eee !important;
+    border: none;
+    font-weight: 600
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #8bbafe;
+    outline: 0;
+    box-shadow: none;
+    border-radius: 0px;
+    border-bottom: 2px solid blue !important;
+}
+
+
+
+.inputbox {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%
+}
+
+.inputbox span {
+    position: absolute;
+    top: 7px;
+    left: 11px;
+    transition: 0.5s
+}
+
+.inputbox i {
+    position: absolute;
+    top: 13px;
+    right: 8px;
+    transition: 0.5s;
+    color: #3F51B5
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+}
+
+.inputbox input:focus~span {
+    transform: translateX(-0px) translateY(-15px);
+    font-size: 12px
+}
+
+.inputbox input:valid~span {
+    transform: translateX(-0px) translateY(-15px);
+    font-size: 12px
+}
+
+.card-blue {
+
+    background-color: #492bc4;
+}
+
+.hightlight {
+
+    background-color: #5737d9;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.yellow {
+
+    color: #fdcc49;
+}
+
+.decoration {
+
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #492bc4;
+    border-color: #492bc4;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #492bc4;
+    border-color: #492bc4;
+}
+
+
+.decoration:hover {
+
+    text-decoration: none;
+    color: #fdcc49;
+}
+
+.add_new {
+    background: #3A1078 !important;
+    color: white !important;
+    margin-left: 8.9rem;
+    position: relative;
+    /* margin: 0 auto!important ; */
+
+}
+
+.add_new_2 {
+    background: #3A1078 !important;
+    color: white !important;
+    cursor: pointer;
+
+}
+
+.Business_details span {
+    cursor: pointer;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid black !important;
+    background: none !important;
+    outline: none;
+}
+
+#example {
+    overflow: hidden;
+}
+
+/* =========================== details invoice end ================================ */
+
+.filter2 {
+    margin-top: 5rem;
+}
+
+.date-range {
+    margin-top: 5rem;
+}
+
+#cursor h6 {
+    cursor: pointer !important;
+}
+
+#Download-t {
+    border: 1px solid #AD7BE9 !important;
+    margin-top: 7rem;
+    background: none;
+    color: #AD7BE9;
+}
+
+.d-inline.active {
+    color: blue;
+    border-bottom: 2px solid blue;
+}
+
+.add_notes {
+    border: 1px solid #AD7BE9 !important;
+    /* margin-top: 7rem; */
+    background: none;
+    color: #AD7BE9;
+}
+
+
+.filter {
+    background-color: rgb(247, 250, 255);
+}
+
+.button___x {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#t_header {
+    background: #3A1078 !important;
+    color: white;
+}
+
+.t_input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+.fa-tag {
+    color: red;
+    font-size: 25px !important;
+}
+
+.add_notes {
+    background-color: rgb(247, 250, 255);
+    border: 2px solid rgb(247, 250, 255);
+}
+
+#editor {
+    height: 475px;
+}
+
+#Conditions {
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#conditions {
+    display: none;
+}
+
+#conditions.active {
+    display: block;
+}
+
+.t_conditions {
+    display: none;
+}
+
+#editor {
+    height: 250px;
+    border: 1px solid #AD7BE9;
+    background-color: white;
+}
+
+.text_editor {
+    display: none;
+
+}
+
+.text_editor.active {
+    display: block;
+}
+
+
+

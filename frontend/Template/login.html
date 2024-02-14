@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 3rem auto;
+            padding: 20px;
+            position: relative;
+            border: 1px solid #000;
+            box-shadow: 0 10px 25px rgb(10 75 90);
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .header {
+            /* margin-bottom: 10px; */
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 25px;
+            /* margin-top: 30px; */
+        }
+
+        .form-row label {
+            margin-top: 5px;
+            margin-right: 4rem;
+            font-size: 15px;
+        }
+
+        .form-row input {
+            width: 14rem;
+            padding: 10px;
+            background: rgb(247, 250, 255);
+            border: 1px solid rgb(180, 194, 213);
+            ;
+            border-radius: 5px;
+        }
+
+        .form-actions {
+            /* margin-top: 20px; */
+        }
+
+        .form-actions button {
+            padding: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: rgb(222, 23, 94);
+            border: none;
+            color: #ffffff;
+            width: 25rem;
+            border-radius: 5px;
+        }
+
+        .invoice-text {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 500;
+            font-family: emoji;
+            color: rgb(115, 61, 217);
+        }
+
+        .invoice-text img {
+            margin-right: 10px;
+            border-radius: 50%;
+            /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+        }
+
+        .invoice-button {
+            position: absolute;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: 1px solid rgb(222, 23, 94);
+            padding: 13px;
+            color: #000000;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .invoice-button:hover {
+            background-color: rgb(222, 23, 94);
+            color: #ffffff;
+        }
+
+        .google-button {
+            display: flex;
+
+            background-color: rgb(0, 119, 236);
+            color: #ffffff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 1px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 25rem;
+            margin-bottom: 30px;
+        }
+
+        .google-icon {
+            margin-right: 5px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .google-button:hover {
+            background-color: #3171e0;
+        }
+
+        .google-text {
+            margin-top: 15px;
+
+        }
+
+        .or-divider {
+            margin: 20px 0;
+            position: relative;
+            color: #ccc;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background-color: #ccc;
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        .login-footer {
+            text-align: center;
+        }
+
+        .login-footer a {
+            line-height: 1.5;
+            margin: 0px;
+            font-size: 0.875rem;
+            color: rgb(222, 23, 94);
+            cursor: pointer;
+            font-weight: var(--typography-bold-font-weight, 500);
+            text-decoration: underline;
+            display: inline;
+        }
+
+        .footer {
+            margin-top: 15px;
+        }
+
+        .toggle-password {
+            float: right;
+            cursor: pointer;
+            margin-right: -20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-text">
+        <img src="/static/image/logo1.png" alt="" height="50" width="60">
+        INVOICE
+    </div>
+    <div class="invoice-button" onclick="window.location.href = '/signup'">
+        <i class="fa fa-user-o " aria-hidden="true"></i> Register
+    </div>
+    <div class="container">
+        <div class="header">
+            <h2>Login to your Invoice account</h2>
+        </div>
+        <button type="button" class="google-button">
+            <span class="google-icon">
+                <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt=""
+                    height="40" width="40">
+            </span>
+            <span class="google-text">
+                Sign in with Google
+            </span>
+
+        </button>
+        <div class="or-divider">Or</div>
+        <form method="post" class="login-form">
+            <div class="form-row">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-row">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" name="password" value="">
+                <i class="toggle-password fa fa-fw fa-eye-slash"></i>
+            </div>
+            <center>
+                <label style="color: red;">
+                    {{error}}
+                </label>
+            </center>
+            <div class="form-actions">
+                <button type="submit" class="login-button" >Login and
+                    Continue</button>
+            </div>
+        </form>
+        <div class="login-footer">
+            <div class="footer">
+                Having issues logging in? <a href="#">Click here</a>
+            </div>
+            <div class="footer">
+                Don't have an account? <a href="/signup">Sign up now</a>
+            </div>
+            <div class="footer">
+                <a href="/forget">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".toggle-password").click(function () {
+                $(this).toggleClass("fa-eye fa-eye-slash");
+                var input = $(this).parent().find("input");
+                if (input.attr("type") === "password") {
+                    input.attr("type", "text");
+                } else {
+                    input.attr("type", "password");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

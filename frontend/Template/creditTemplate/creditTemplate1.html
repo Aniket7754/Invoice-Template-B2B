@@ -1,0 +1,544 @@
+{% include 'sidebar.html' %}
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Invoice Template</title>
+    <link rel="stylesheet" href="/static/css/mainStyle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <style>
+        .card-1 {
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 5px;
+        }
+
+        .invoice-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 20px;
+            /* border: 1px solid #000; */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+
+        .theme-dropdown {
+            max-width: 800px;
+            margin: 50px auto;
+            /* border: 1px solid #000; */
+            border-radius: 5px;
+        }
+
+        .invoice-headers {
+            text-align: center;
+            /* margin-bottom: 20px; */
+            color: #000;
+        }
+
+
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .invoice-details .left {
+            width: 50%;
+        }
+
+        .invoice-details .right {
+            width: 45%;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .invoice-total {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .invoice-footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .theme-dropdown i {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Rotate the dropdown icon when the accordion is expanded */
+        .theme-dropdown .collapsed i {
+            transform: rotate(180deg);
+        }
+
+        .card-body {
+            padding: 15px;
+            /* Add padding to the dropdown content */
+        }
+
+        .card-header {
+            background-color: #fff;
+        }
+
+        .card-header a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Add styling for customization options */
+        .customization-options {
+            margin-top: 15px;
+        }
+
+        .customization-options label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .invoice-image img {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #000;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .invoice-image {
+            height: 17rem;
+            width: 11rem;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .invoice-image:hover {
+            background-color: #b5d9ff;
+            /* border: 1px solid #000; */
+        }
+
+        .invoice-image img:hover {
+            transform: scale(1.01);
+            /* Add your preferred border color */
+        }
+
+
+
+
+        /* CSS */
+        .button-6 {
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 1.25;
+            margin: 0;
+            min-height: 3rem;
+            padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+            position: relative;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            width: auto;
+        }
+
+        .button-6:hover,
+        .button-6:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        .button-6:hover {
+            transform: translateY(-1px);
+        }
+
+        .button-6:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
+
+
+        /* Add these styles to your existing styles or create a new section for styles */
+
+        .invoice-header {
+            background-color: #1e2e50;
+            color: #fff;
+            padding: 20px;
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+
+        .billed-by,
+        .billed-to {
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .billed-by h4,
+        .billed-to h4 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .billed-by h6,
+        .billed-to h6 {
+            margin-bottom: 5px;
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 767.98px) {
+
+            .billed-by,
+            .billed-to {
+                text-align: center;
+            }
+
+            .billed-to {
+                margin-top: 20px;
+            }
+        }
+
+
+        .invoice-footer {
+            background-color: #1e2e50;
+            color: #fff;
+            padding: 10px;
+            border-radius: 0 0 0.25rem 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="card-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Back Button -->
+                <button class="button-6" onclick="printInvoice()">
+                    <i class="fa fa-print mr-2" aria-hidden="true"></i> Print
+                </button>
+
+                <!-- Action Buttons on the Right -->
+                <div>
+
+                    <button class="button-6" onclick="downloadInvoice()">
+                        <i class="bx bx-download mr-2"></i> Download
+                    </button>
+                    <button class="button-6" onclick="emailInvoice()">
+                        <i class="bx bx-envelope mr-2"></i> Email
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="invoice-container downloadfromhere" id="invoice-container">
+            <div class="invoice-headers">
+                <h1>Credit Note</h1>
+            </div>
+            <div class="billed-to">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p><strong>Credit Note No:</strong> A00010</p>
+                        <p><strong>Credit Note Date:</strong> 30 Dec 2023</p>
+                        <p><strong>Linked Invoice:</strong> Invoice # 052824</p>
+                        <p><strong>Reason:</strong> Other</p>
+                        <!-- Add dynamic data here -->
+                        <!-- <span id="link_invoice"></span> -->
+                    </div>
+
+                    <div class="col-md-4 text-right">
+                        <!-- Replace 'your-logo-url' with the actual URL or path of your logo image -->
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4iicFs4Vy5sxgecK9OddRNKSRCTAHNiGonsZ3SWFLGA&s"
+                            alt="Your Logo" style="max-width: 100px;">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="invoice-header">
+                <div class="row">
+                    <!-- Billed By -->
+                    <div class="col-md-6">
+                        <div class="billed-by text-left">
+                            <p>Savatarr Technologies Pvt. Ltd</p>
+                            <p><strong>Address:</strong> PLOT NO. 258 AND 259 Block R, Mohan
+                                Garden, Uttam Nagar, New Delhi, Delhi, India -
+                                110059 </p>
+                            <p><strong>GST NO.: </strong>07ABECS3535N1ZZ</p>
+                            <p><strong>PAN NO.: </strong>ABECS3535N</p>
+                        </div>
+                    </div>
+
+                    <!-- Billed To -->
+                    <div class="col-md-6 text-left">
+                        <div class="billed-to">
+                            <div>
+                                <p>Pentabulls Technologies</p>
+                        <p><strong>Address:</strong> 2ND FLOOR, SF - 221, IT COMPLEX,
+                            JMD MEGAPOLIS, VILLAG E TIKRI SOHNA
+                            ROAD</p>
+                        <p><strong>GST NO.:</strong> 06AAXFP5998D1ZF</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="invoice-body">
+
+                <!-- Row start -->
+                <div class="row gutters">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="table-responsive" id="invoice_payment">
+                            <table class="table custom-table mt-2">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Wordpress Template
+                                            
+                                        </td>
+                                        <td>#50000981</td>
+                                        <td>9</td>
+                                        <td>$5000.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Maxwell Admin Template
+                                           
+                                        </td>
+                                        <td>#50000126</td>
+                                        <td>5</td>
+                                        <td>$100.00</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td colspan="2">
+                                           
+                                            <h5 class="text-success"><strong>Total</strong></h5>
+                                        </td>
+                                        <td>
+                                            <h5 class="text-success"><strong>$5150.99</strong></h5>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row end -->
+
+            </div>
+            <hr>
+
+            <div class="notes-container mt-4">
+                <h4>Notes</h4>
+                <p id="textEditorContent">Here the notes content here</p>
+            </div>
+
+            <div class="terms mt-4">
+                <h4>Terms and Conditions</h4>
+                <p id="textEditorContent">1. Please quote invoice number when remitting funds.</p>
+            </div>
+
+            <div class="invoice-footer">
+                Thank you for your Business.
+            </div>
+
+        </div>
+
+        <div class="theme-dropdown">
+            <div id="accordion" role="tablist">
+                <div class="card">
+                    <div class="card-header" role="tab" id="headingTwo">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-0">Customize Invoice Design</h5>
+                                </div>
+                                <div>
+                                    <!-- Add your customized dropdown icon here -->
+                                    <i class="bx bx-chevron-down" id="tab_1" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="card-body">
+                            <div class="customization-options">
+                                <!-- Add your theme customization options here -->
+                                <label for="themeColor">Theme Color:</label>
+                                <input type="color" id="themeColor" name="themeColor">
+
+                                <label for="fontFamily">Font Family:</label>
+                                <select id="fontFamily" name="fontFamily">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <!-- Add more font options as needed -->
+                                </select>
+                            </div>
+
+                            <!-- Owl Carousel container for the image slider -->
+                            <div class="container mt-3">
+                                <div class="row">
+                                    <!-- Container 1 -->
+                                    <div class="col-md-3 mb-2">
+                                        <div class="invoice-image item">
+                                            <a href="/creditTemplate">
+                                                <img src="../../static/image/creditTemplate.png" alt="Image 1"
+                                                    onclick="toggleSelection(this)">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Container 2 -->
+                                    <div class="col-md-3 mb-2">
+                                        <div class="invoice-image item" style="background-color: #b5d9ff;">
+                                            <a href="./creditTemplate1">
+                                                <img src="../../static/image/creditTemplate1.png"
+                                                    onclick="toggleSelection(this)">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Container 3 -->
+                                    <div class="col-md-3 mb-2">
+                                        <div class="invoice-image item">
+                                            <a href="./creditTemplate2">
+                                                <img src="../../static/image/creditTemplate2.png" alt="Image 3"
+                                                    onclick="toggleSelection(this)">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Container 4 -->
+                                    <div class="col-md-3 mb-2">
+                                        <div class="invoice-image item">
+                                            <a href="/creditTemplate3">
+                                                <img src="../../static/image/creditTemplate3.png" alt="Image 4"
+                                                    onclick="toggleSelection(this)">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add more containers as needed -->
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/script.js"></script>
+    <!-- Include js-cookie library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+
+
+    <script>
+
+        let selectedImage = null;
+
+        function toggleSelection(image) {
+            if (selectedImage) {
+                selectedImage.classList.remove('selected');
+            }
+            selectedImage = image;
+            image.classList.add('selected');
+        }
+
+        function printInvoice() {
+            // Clone the invoice container content
+            var invoiceContent = document.getElementById('invoice-container').cloneNode(true);
+
+            // Create a new window
+            var printWindow = window.open('', '_blank');
+
+            // Append the cloned content to the new window
+            printWindow.document.body.appendChild(invoiceContent);
+
+            // Print the new window
+            printWindow.print();
+        }
+
+
+        function downloadInvoice() {
+            var element = document.querySelector('.downloadfromhere');
+            html2pdf(element);
+        }
+        function emailInvoice() {
+            // Implement your logic to email the invoice
+            console.log("Emailing invoice...");
+        }
+    </script>
+
+
+</body>
+
+</html>

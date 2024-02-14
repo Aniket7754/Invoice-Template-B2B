@@ -1,0 +1,504 @@
+{% include 'sidebar.html' %}
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="static/js/ajax.js"></script>
+
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Side Navigation Bar in HTML CSS JavaScript</title>
+    <link rel="stylesheet" href="/static/css/mainStyle.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+        background-color: rgb(247, 250, 255);
+    }
+
+
+
+    .left-button {
+        background-color: rgb(254, 62, 130);
+        /* Pink color */
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .invoice-text {
+        font-size: 20px;
+        font-weight: bold;
+
+    }
+
+    .card-input {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 40px;
+        background-color: rgb(247, 250, 255);
+    }
+
+    .form-card {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .my-5 {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+
+
+
+    .flexible-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .flex-card {
+        flex: 1 1 300px;
+        margin-right: 20px;
+    }
+
+    .big-card {
+        flex: 1 1 600px;
+        /* Adjust width as needed */
+        margin-right: 20px;
+    }
+
+    .small-card {
+        flex: 1 1 300px;
+        /* Adjust width as needed */
+        margin-right: 20px;
+    }
+
+    .dotted-line {
+        border-bottom: 2px dotted #000;
+        /* You can customize the color here */
+        margin-bottom: 20px;
+        /* Adjust as needed */
+        color: blueviolet;
+    }
+
+    .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .camera-icon {
+        font-size: 24px;
+        color: #333;
+        display: block;
+    }
+
+    .username {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .input-group {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .input-group input {
+        border: none;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        background: rgba(234, 233, 233, 0.295);
+        font-size: 14px;
+        padding: 0.5rem 0.25rem;
+        border-bottom: 1px solid #000;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+
+
+    .input-group select {
+        border: none;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        background: inherit;
+        font-size: 14px;
+        padding: 0.5rem 0.25rem;
+        border-bottom: 1px solid #000;
+        box-sizing: border-box;
+    }
+
+    .p-dotted-line {
+        border-bottom: 1px dotted #000;
+        /* color: blueviolet; */
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+    .save {
+        background-color: rgb(222, 23, 94);
+        padding: 10px;
+        color: #ffff;
+        border-radius: 5px;
+        border: 1px solid #000;
+    }
+
+    .row-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .row-flex .flex-card {
+        flex: 1 1 48%;
+        /* Adjust the width as needed */
+        margin-right: 2%;
+        /* Adjust the margin as needed */
+        margin-bottom: 20px;
+        /* Adjust the margin as needed */
+    }
+
+    @media (max-width: 767px) {
+        .row-flex .flex-card {
+            flex: 1 1 100%;
+            /* Full width on smaller screens */
+            margin-right: 0;
+        }
+    }
+</style>
+
+<body>
+    <div class="content">
+        <span id="username" hidden>{{session.get('username')}}</span>
+        <div class="d-flex justify-content-center">
+            <h1 class="dotted-line">Edit Your Profile</h1>
+        </div>
+
+        <div class="flexible-cards ">
+            <!-- Profile Card -->
+            <div class="flex-card small-card">
+                <div class="card" style="background-color: rgb(191, 212, 247);">
+
+                    <div class="card-body mt-3">
+                        <div class="circle" onclick="openFileUploader()">
+                            <i id="cameraIcon" class="fa fa-camera camera-icon" aria-hidden="true"></i>
+                            <input type="file" id="fileInput" style="display: none" onchange="handleFileSelect()" />
+                        </div>
+
+                        <div id="username" class="username justify-content-center d-flex mt-4">
+                            {{session.get('username')}}
+                        </div>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basic Information Card -->
+            <div class="flex-card big-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center">
+                            <p class="p-dotted-line">Basic Information</p>
+                        </div>
+                        <!-- Input for Your Name/Business Name -->
+                        <div class="input-group">
+                            <label for="yourName">Business Name</label>
+                            <input type="text" id="yourName" name="yourName"
+                                value="{{session.get('result')[0].get('bussiness_name')}}">
+                        </div>
+                        <!-- Input for Brand or Display Name -->
+                        <div class="input-group">
+                            <label for="brandName">Brand or Display Name</label>
+                            <input type="text" id="brandName" name="brandName" placeholder="Enter brand or display name"
+                                value="{{session.get('result')[0].get('brand_name')}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Small Card 2 -->
+            <div class="flex-card small-card">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Content for the small card 2 -->
+                        <div class="d-flex justify-content-center">
+                            <p class="p-dotted-line">Profile Information</p>
+                        </div>
+                        <div class="input-group">
+                            <label for="teamSize">Team Size</label>
+                            <input type="number" id="teamSize" name="teamSize" placeholder="Enter your Team Size"
+                                value="{{session.get('result')[0].get('team_size')}}">
+                        </div>
+                        <div class="input-group">
+                            <label for="websiteURL">Website URL</label>
+                            <input type="number" id="websiteURL" name="websiteURL" placeholder="Enter your Website URL"
+                                value="{{session.get('result')[0].get('website')}}">
+                        </div>
+                        <div class="input-group">
+                            <label for="businessSince">In Business Since</label>
+                            <span>{{session.get('result')[0].get('business_date').split('T')[0]}}</span>
+                            <input type="date" id="businessSince" name="businessSince"
+                                placeholder="Select your Business Since">
+                        </div>
+                        <div class="input-group">
+                            <label for="businessCategory">Your Business Category</label>
+                            <input type="text" id="businessCategory" name="businessCategory"
+                                placeholder="Enter your Business Category">
+                        </div>
+                        <div class="input-group">
+                            <label for="businessTagline">Business Tagline</label>
+                            <input type="text" id="businessTagline" name="businessTagline"
+                                placeholder="Highlight Your Product or Services">
+                        </div>
+                        <!-- Add your content here... -->
+                    </div>
+                </div>
+            </div>
+            <div class="flex-card small-card">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Content for the small card 2 -->
+                        <div class="d-flex justify-content-center">
+                            <p class="p-dotted-line">Address & Communication Details</p>
+                        </div>
+                        <div class="input-group">
+                            <label for="country">Country</label>
+
+                            <select name="country" id="country" placeholder="Country">
+                                <option value="1">India</option>
+                                <option value="2">USA</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" placeholder="Enter Your State">
+                        </div>
+                        <div class="input-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="Enter Your City Nmae">
+                        </div>
+                        <div class="input-group">
+                            <label for="postalZip">Postal Code/Zip Code</label>
+                            <input type="text" id="postalZip" name="postalZip"
+                                placeholder="Enter Your Postal or Zip Code">
+                        </div>
+                        <div class="input-group">
+                            <label for="streetAddress">Street Address</label>
+                            <input type="text" id="streetAddress" name="streetAddress"
+                                placeholder="Enter Your Street Address">
+                        </div>
+                        <!-- Add your content here... -->
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="flex-card big-card col-lg-">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Content for the small card 2 -->
+                        <div class="d-flex justify-content-center">
+                            <p class="p-dotted-line">Bank Details</p>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="account_name">Account Holder Name</label>
+                            <input type="text" id="account_name" name="account_name"
+                                placeholder="Enter Your Account Name">
+                        </div>
+                        <div class="input-group">
+                            <label for="account_number">Account Number</label>
+                            <input type="text" id="account_number" name="account_number"
+                                placeholder="Enter Your Account Number">
+                        </div>
+                        <div class="input-group">
+                            <label for="IFSC">IFSC</label>
+                            <input type="text" id="IFSC" name="IFSC" placeholder="Enter Your IFSC No.">
+                        </div>
+                        <div class="input-group">
+                            <label for="swift">SWIFT</label>
+                            <input type="text" id="swift" name="swift" placeholder="Enter Your SWIFT No.">
+                        </div>
+                        <div class="input-group">
+                            <label for="bank">Bank</label>
+                            <input type="text" id="bank" name="bank" placeholder="Enter Your Bank Name">
+                        </div>
+                        <!-- Add your content here... -->
+                    </div>
+                </div>
+            </div>
+            <div class="flex-card small-card">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Content for the small card 2 -->
+                        <div class="d-flex justify-content-center">
+                            <p class="p-dotted-line">Add Tax</p>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="GST">GST</label>
+                            <input type="text" id="GST" name="GST" placeholder="Enter Your GST No.">
+                        </div>
+                        <div class="input-group">
+                            <label for="city">PAN Card No.</label>
+                            <input type="text" id="pan" name="city" placeholder="Enter Your PAN No.">
+                        </div>
+
+                        <!-- Add your content here... -->
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+        <div class="d-flex justify-content-center  mt-4">
+            <button class="save" onclick="uploadFile(),profile()">Save Your Profile</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+    <script src="/static/script.js"></script>
+    <!-- Include js-cookie library -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // getUserData()
+            // console.log("aaaaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnnnn")
+            const username = `{{session.get('username')}}`
+
+            fetch(`http://localhost:8080/api/v1/image_path?username=${username.toLowerCase()}`)  // Replace with your Flask endpoint
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a blob URL for the fetched image data
+                    console.log(blob)
+                    const imageUrl = URL.createObjectURL(blob);
+                    // Set the blob URL as the src attribute of the image element
+
+                    setCircleBackground(imageUrl);
+                })
+                .catch(error => console.error('Error fetching image:', error));
+            const buttons = document.querySelectorAll('.invoice-option');
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    buttons.forEach(function (btn) {
+                        btn.classList.remove('active-invoice');
+                    });
+                    this.classList.add('active-invoice');
+                });
+            });
+        });
+        function setCircleBackground(imageUrl) {
+            const circle = document.querySelector('.circle');
+            const cameraIcon = document.getElementById('cameraIcon');
+            circle.style.backgroundImage = `url(${imageUrl})`;
+            circle.style.backgroundSize = 'cover';
+            circle.style.backgroundPosition = 'center';
+            cameraIcon.style.display = 'none';
+        }
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+        function openFileUploader() {
+            document.getElementById('fileInput').click();
+        }
+
+        function handleFileSelect() {
+            var input = document.getElementById('fileInput');
+            var file = input.files[0];
+            var cameraIcon = document.getElementById('cameraIcon');
+            var circle = document.querySelector('.circle');
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    circle.style.backgroundImage = 'url(' + e.target.result + ')';
+                    circle.style.backgroundSize = 'cover';
+                    circle.style.backgroundPosition = 'center';
+                    cameraIcon.style.display = 'none'; // Hide the camera icon
+                    input.style.display = 'none'; // Hide the input element
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const username = `{{session.get('username')}}`
+            console.log(username)
+            if (file) {
+                const formData = new FormData();
+                formData.append('files', file);
+                formData.append('username', username)
+                fetch(`http://localhost:8080/api/v1/upload_image`, {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Response from backend:', data);
+                        // Handle the response from the backend as needed
+                    })
+                    .catch(error => {
+                        console.error('Error sending file to backend:', error);
+                    });
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

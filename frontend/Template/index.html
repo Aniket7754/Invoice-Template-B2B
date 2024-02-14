@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            display: flex;
+            background: none;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #fff;
+            /* Light text color */
+        }
+
+        .container {
+            width: 400px;
+            padding: 36px 48px 48px 48px;
+            border-radius: 11px;
+            background: none;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-title {
+            padding: 15px;
+            font-size: 28px;
+            font-weight: 600;
+            color: #eee;
+            /* Light text color */
+        }
+
+        .login-form {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 16px;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ddd;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 9px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            color: #333;
+            /* Darker text color for input */
+            transition: border-color 0.3s;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: #f48982;
+            box-shadow: 0 0 0 4px rgba(253, 242, 233, 0.2);
+        }
+
+        .btn--form {
+            background-color: #f48982;
+            align-self: end;
+            padding: 12px;
+            font-size: 18px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn--form:hover {
+            background-color: #d36d66;
+        }
+
+        .link {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .link a {
+            text-decoration: none;
+            color: #3498db;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .link a:hover {
+            color: #1d5ca8;
+        }
+
+        hr {
+            margin-top: 20px;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        .Ac {
+            color: #3498db !important;
+            text-decoration: block;
+        }
+
+        .forget {
+            color: #e74c3c !important;
+            font-weight: bold;
+        }
+
+        /* Rain background styles */
+        section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.thisiscolossal.com/wp-content/uploads/2018/11/HenriPrestes_02.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('http://pngimg.com/uploads/rain/rain_PNG13468.png');
+            animation: rain 0.19s ease-in infinite;
+            z-index: -2;
+        }
+
+        @keyframes rain {
+            0% {
+                background-position: 10% 0;
+            }
+
+            100% {
+                background-position: 20% 80%;
+            }
+        }
+        
+
+        .fadeInDown {
+            animation-name: fadeInDown;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+
+            50% {
+                opacity: .5;
+                transform: translate3d(0, 20%, 0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Fade-in Animation */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            opacity: 0;
+            animation: fadeIn ease-in 1s;
+            animation-fill-mode: forwards;
+            animation-duration: 1s;
+        }
+
+        .fadeIn.first {
+            animation-delay: 0.4s;
+        }
+
+        .fadeIn.second {
+            animation-delay: 0.6s;
+        }
+
+        .fadeIn.third {
+            animation-delay: 0.8s;
+        }
+
+        .fadeIn.fourth {
+            animation-delay: 1s;
+        }
+
+        /* Fade-in Animation */
+
+        .underlineHover:after {
+            display: block;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background-color: #56baed;
+            content: "";
+            transition: width 0.2s;
+        }
+
+        .underlineHover:hover {
+            color: #fff;
+        }
+
+        .underlineHover:hover:after {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section></section>
+
+    <div class="container fadeInDown">
+        <h2 class="login-title">Log in</h2>
+
+        <form method="post" class="login-form">
+            <div>
+                <label for="username">User Name </label>
+                <input id="username" type="text" placeholder="Username" name="username" required />
+            </div>
+
+            <div>
+                <label for="password">Password </label>
+                <input id="password" type="password" placeholder="Password" name="password" required />
+            </div>
+            <center>
+                <label style="color: red;">
+                    {{error}}
+                </label>
+            </center>
+
+            <div class="link">
+                <a href="signup" class="Ac mx-3"> Sign up </a>
+                <a href="forget" class="forget">Forget Password</a>
+
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn--form" id="btn2">
+                Log in
+            </button>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

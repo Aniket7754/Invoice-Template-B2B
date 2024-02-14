@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Boxicons CSS -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>Creative Invoice</title>
+  <link rel="stylesheet" href="/static/css/mainStyle.css" />
+</head>
+
+
+<body>
+ 
+  <!-- navbar -->
+  <nav class="navbar">
+    <div class="logo_item">
+      <i class="bx bx-menu" id="sidebarOpen"></i>
+      <img src="/static/image/logo1.png" alt=""></i>INVOICE
+    </div>
+
+    <div class="search_bar">
+      <input type="text" placeholder="Search" />
+    </div>
+
+    <div class="navbar_content">
+      <i class="bi bi-grid"></i>
+     
+      <i class='bx bx-bell'></i>
+
+      <div class="user_info_container">
+        <!-- Circular container for user's first letter -->
+        <div class="user_initial_container">
+          <span class="user_initial">{{session.get('username')[0]}}</span>
+        </div>
+
+        <!-- Down arrow icon -->
+        <i class="bx bx-chevron-down"></i>
+      </div>
+      
+      <!-- <img src="images/profile.jpg" alt="" class="profile" /> -->
+    </div>
+  </nav>
+
+  <!-- Add this code inside the body of your existing HTML document -->
+  <div class="user_card">
+    <div class="card_content">
+      <div class="user-detailss">
+        <div class="user-icons">
+          {{session.get('username')[0]}}
+        </div>
+        <div class="user-infos">
+          <h5 class="card-title mb-0">{{session.get('username')}} </h5>
+          <p class="card-text">{{session.get('result')[0].get('email')}}</p>
+          
+        </div>
+      </div>
+      <div class="logout_area" onclick="window.location.href='/'">
+        <i class="bx bx-log-out"></i> Logout
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- sidebar -->
+  <nav class="sidebar">
+    <div class="menu_content">
+      <ul class="menu_items">
+        <!-- <div class="menu_title menu_editor"></div> -->
+        <!-- duplicate these li tag if you want to add or remove navlink only -->
+        <!-- Start -->
+         <li class="item mt-4">
+          <a href="./dashboard" class="nav_link">
+            <span class="navlink_icon">
+              <i class="bx bx-loader-circle"></i>
+            </span>
+            <span class="navlink" >Dashboard</span>
+          </a>
+        </li>
+        <li class="item">
+          <a href="/invoice" class="nav_link">
+            <span class="navlink_icon">
+              <i class="bx bxs-magic-wand"></i>
+            </span>
+            <span class="navlink">Invoice</span>
+          </a>
+        </li>
+        <!-- End -->
+
+        <li class="item">
+          <a href="/creditNote" class="nav_link">
+            <span class="navlink_icon">
+              <i class="bx bx-filter"></i>
+            </span>
+            <span class="navlink">Credit Notes</span>
+          </a>
+        </li>
+
+
+       
+  
+        <li class="item">
+          <a href="/yourClient" class="nav_link">
+            <span class="navlink_icon">
+              <i class="bx bx-cloud-upload"></i>
+            </span>
+            <span class="navlink">Your Client</span>
+          </a>
+        </li>
+
+        
+
+      </ul>
+    
+
+      <!-- Sidebar Open / Close -->
+      <div class="bottom_content">
+        <div class="bottom expand_sidebar">
+          <span> Expand</span>
+          <i class='bx bx-log-in'></i>
+        </div>
+        <div class="bottom collapse_sidebar">
+          <span> Collapse</span>
+          <i class='bx bx-log-out'></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  <!-- JavaScript -->
+  <script src="/static/script.js"></script>
+
+  <script>
+    // Add this code to your existing script.js file or create a new one
+document.addEventListener('DOMContentLoaded', function () {
+  const userInfoContainer = document.querySelector('.user_info_container');
+  const userCard = document.querySelector('.user_card');
+
+  userInfoContainer.addEventListener('click', function () {
+    userCard.classList.toggle('open');
+  });
+});
+
+  </script>
+
+</body>
+
+</html>

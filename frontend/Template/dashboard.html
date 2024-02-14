@@ -1,0 +1,250 @@
+{% include 'sidebar.html' %}
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Boxicons CSS -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>Side Navigation Bar in HTML CSS JavaScript</title>
+  <link rel="stylesheet" href="/static/css/mainStyle.css" />
+  <style>
+    /* Additional styles can be added as needed */
+    .user-details {
+      display: flex;
+      align-items: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .user-icon {
+      width: 55px;
+      height: 55px;
+      font-size: 25px;
+      background-color: #ff6a14;
+      /* Choose your desired background color */
+      color: #fff;
+      /* Choose your desired text color */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+    }
+
+    .user-info {
+      flex-grow: 1;
+    }
+
+    .user-info h5 {
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .user-info p {
+      margin-bottom: 0;
+      font-weight: bold;
+      color: #7f8c8d;
+      /* Choose your desired text color */
+    }
+
+    .card {
+      transition: box-shadow 0.3s ease-in-out;
+      margin-bottom: 20px;
+      background-color: rgb(251, 252, 254);
+      border: 1px solid rgb(226, 229, 233);
+      border-radius: 1rem;
+      min-width: 17.5rem;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      background-color: #ffff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-img {
+      margin-left: 30px;
+      margin-top: 10px;
+    }
+    .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            background-color: rgb(101, 57, 192);
+            color: #fff;
+        }
+
+        /* Primary button style */
+        
+
+        /* Hover effect */
+        .btn:hover {
+            background-color: rgba(102, 57, 192, 0.868);
+            color: #fff;
+
+        }
+    
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <!-- cardheader -->
+    <a>
+      <div class="card">
+        <img src="https://afiles.webengage.com/76ab099/64852943-c3a6-486d-b20b-c9a5cea72891.png" class="card-img-top"
+          alt="Card Image">
+      </div>
+    </a>
+
+
+
+    <div class="user-details ">
+      <div class="user-icon">
+        {{session.get('username')[0]}}
+      </div>
+      <div class="user-info">
+        <p class="card-text">Hello {{session.get('username')}}</p>
+        <h5 class="card-title mb-0">Welcome back {{session.get('username')}}!</h5>
+      </div>
+    </div>
+
+
+
+    <!-- Cards Section -->
+    <h2>Getting Started</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <!-- Image at the top right -->
+          <div class="card-img">
+            <img src="https://assets.refrens.com/complete_your_profile_65c494dc6e.png" alt="Small Image" width="100"
+              height="100">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Complete your Profile</h5>
+            <p class="card-text">Showcase your expertise by completing your profile for a strong professional presence.
+            </p>
+            <a href="/profileCreate" class="btn ">Edit Profile</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <!-- Image at the top right -->
+          <div class="card-img">
+            <img src="https://assets.refrens.com/capture_leads_via_form_d2255f377d.png" alt="Small Image" width="100"
+              height="100">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Create Your Invoice</h5>
+            <p class="card-text">Showcase your expertise by completing your profile for a strong professional presence.
+            </p>
+            <a href="/createInvoice" class="btn ">+ Invoice</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <!-- Image at the top right -->
+          <div class="card-img ">
+            <img src="https://assets.refrens.com/upload_clients_4674e08e8a.png" alt="Small Image" width="100"
+              height="100">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Create Credit Note</h5>
+            <p class="card-text">Showcase your expertise by completing your profile for a strong professional presence.
+            </p>
+            <a href="/credit" class="btn ">Credit Note</a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- <div class="col-md-4">
+        <div class="card">
+          <div class="card-img">
+            <img src="https://assets.refrens.com/complete_your_profile_65c494dc6e.png" alt="Small Image" width="100"
+              height="100">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Complete your Profile</h5>
+            <p class="card-text">Showcase your expertise by completing your profile for a strong professional presence.
+            </p>
+            <a href="#" class="btn btn-primary">Edit Profile</a>
+          </div>
+        </div>
+
+      </div> -->
+
+
+      <!-- <div class="col-md-4">
+        <div class="card">
+          <div class="card-img">
+            <img src="https://assets.refrens.com/complete_your_profile_65c494dc6e.png" alt="Small Image" width="100"
+              height="100">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Complete your Profile</h5>
+            <p class="card-text">Showcase your expertise by completing your profile for a strong professional presence.
+            </p>
+            <a href="#" class="btn btn-primary">Edit Profile</a>
+          </div>
+        </div>
+
+      </div> -->
+
+      <!-- <div class="col-md-4">
+        <div class="card">
+          <div class="card-img">
+            <img src="https://assets.refrens.com/complete_your_profile_65c494dc6e.png" alt="Small Image" width="100"
+              height="100">
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title">Complete your Profile</h5>
+            <p class="card-text">Showcase your expertise by completing your profile for a strong professional presence.
+            </p>
+            <a href="#" class="btn btn-primary">Edit Profile</a>
+          </div>
+        </div>
+
+      </div> -->
+
+    </div>
+    <!-- End Cards Section -->
+  </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/static/script.js"></script>
+  <!-- Include js-cookie library -->
+  <script>
+
+  </script>
+</body>
+
+</html>

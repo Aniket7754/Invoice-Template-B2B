@@ -1,0 +1,451 @@
+{% include 'sidebar.html' %}
+<!DOCTYPE html>
+<!-- Coding by CodingNepal || www.codingnepalweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="static/js/ajax.js"></script>
+
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Side Navigation Bar in HTML CSS JavaScript</title>
+    <link rel="stylesheet" href="/static/css/mainStyle.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+</head>
+
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+    }
+
+    .card-body {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .left-button {
+        background-color: rgb(254, 62, 130);
+        /* Pink color */
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .invoice-text {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .card-input {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 40px;
+        background-color: rgb(247, 250, 255);
+    }
+
+    .form-card {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .my-5 {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+
+    /* Add your custom styles here */
+    .table th,
+    .table td {
+        text-align: center;
+    }
+
+    .table th {
+        background-color: rgb(247, 250, 255);
+    }
+
+    .table th,
+    .table td {
+        vertical-align: middle;
+    }
+
+    .status-btn {
+        width: 100px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        background-color: #fff;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th,
+    .table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .table th {
+        background-color: #000000;
+        color: #fff;
+        border-top: 1px solid #dee2e6;
+        cursor: pointer;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.375rem 0.75rem;
+        margin: 0;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .modal-content {
+        width: 200%;
+        margin-left: -15rem !important;
+        /* background: ; */
+        color: rgb(0, 0, 0);
+        border-radius: 6px;
+    }
+
+    .modal-header {
+        background-color: rgb(101, 57, 192);
+        color: #ffff;
+    }
+
+    .close {
+        /* color: white; */
+    }
+</style>
+
+<body>
+    <div class="content">
+
+        <span id="username" hidden>{{session.get('username').lower()}}</span>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="creditNoteModal" tabindex="-1" role="dialog" aria-labelledby="creditNoteModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content mx-auto">
+
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Client</h4>
+                        <button type="button" class="close " data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+
+                        <div class="row mx-1">
+
+                            <div class="col-lg-6">
+                                <form>
+
+                                    <label for="">Client's Business Name
+                                        <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="client">
+                                    <br>
+                                    <label for="">Client's Position
+                                        <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="Position">
+                                    <br>
+                                    <label for="s_country">Select Country
+                                        <span class="text-danger">*</span></label><br>
+                                    <select class=" form-control form-select" id="s_country"
+                                        aria-label="Default select example">
+                                        <option selected></option>
+                                        <option value="India">India</option>
+                                        <option value="Uk">United Kingdom (Uk)</option>
+                                        <option value="US">United States of America (US)</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="Canada">Canada</option>
+                                    </select>
+
+                                </form>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <form>
+
+                                    <label for="">Client Industry
+                                    </label>
+                                    <input type="text" class="form-control" id="industry">
+
+                                    <label for="" class="m-3">City
+                                    </label>
+                                    <input type="text" class="form-control" id="city">
+
+
+
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <!-- tax information -->
+
+                        <!-- Tax Information -->
+                        <div class="row mx-1 mt-5" id="tax">
+                            <div class="col-lg-12">
+                                <h6>Tax Information <span class="text-muted">(optional)</span>
+                                    <i class="fa fa-angle-down" id="tab_1" aria-hidden="true"></i>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row mx-1" id="show_1">
+                            <div class="col-lg-6 my-4">
+                                <label for="" class="vat-label">VAT Number</label>
+
+                                <input type="text" class="form-control" id="vat">
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="row mt-5 mx-1">
+                            <div class="col-lg-12">
+                                <h6>Address <span class="text-muted">(optional)</span>
+                                    <i class="fa fa-angle-down" id="tab_2" aria-hidden="true"></i>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row mx-1 my-4" id="show_2">
+                            <div class="col-lg-6">
+                                <label for="" class="">State / Province</label>
+                                <input type="text" class="form-control" id="state">
+                                <br>
+                                <label for="" class="">Postal Code / Zip Code</label>
+                                <input type="text" class="form-control" id="zip">
+                            </div>
+
+                            <div class="col-lg-12 my-3">
+                                <label for="" class="">Street Address</label>
+                                <input type="text" class="form-control" id="steet">
+                            </div>
+                        </div>
+
+                        <!-- Additional Details -->
+                        <div class="row mt-5 mx-1">
+                            <div class="col-lg-12">
+                                <h6>Additional Details <span class="text-muted">(optional)</span>
+                                    <i class="fa fa-angle-down" id="tab_3" aria-hidden="true"></i>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="row mx-1 my-4" id="show_3">
+                            <div class="col-lg-6">
+                                <label for="" class="">Business Alias (Nick Name)</label>
+                                <input type="text" class="form-control" id="Nick">
+                                <br>
+                                <label for="" class="">Email</label>
+                                <input type="text" class="form-control" id="Email">
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label for="" class="">Unique Key</label>
+                                <input type="text" class="form-control" id="Key">
+                                <br>
+                                <label for="" class="">Phone Number</label>
+                                <input type="text" class="form-control" list="Number" id="Number">
+                                <datalist id="Number">
+                                    <option value="123456789">
+                                    <option value="000000078">
+                                </datalist>
+                            </div>
+                        </div>
+
+                        <!-- Bank Details -->
+                        <div class="row mt-4 mx-1">
+                            <div class="col-lg-12 ">
+                                <div class="d-flex  justify-content-between">
+                                    <h6 class="py-4">Bank Details</h6>
+                                    <i id="bank_tab" aria-hidden="true" class="fa fa-angle-down angle py-4"></i>
+                                </div>
+
+                                <div class="bank" id="show_bank">
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">Account Holder Name</label>
+                                        <input type="text" placeholder="Account Holder Name" id="account_h"
+                                            class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">Account Number</label>
+                                        <input type="text" placeholder="Account Number" id="account_n"
+                                            class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">IFSC</label>
+                                        <input type="text" placeholder="IFSC" id="ifsc" class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">SWIFT</label>
+                                        <input type="text" placeholder="SWIFT" id="swift" class="form-control">
+                                    </div>
+                                    <div class="my-4">
+                                        <label class="ml-2" for="">Bank</label>
+                                        <input type="text" placeholder="Bank" id="bank" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- bank details end -->
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn text-center btn-success px-3 " onclick="add_client() ,reload()"
+                            data-dismiss="modal">Save &
+                            Continue </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card ">
+            <div class="card-body">
+                <div class="invoice-text">Your Client</div>
+                <button type="button" class="left-button" data-toggle="modal" data-target="#creditNoteModal">+Add Client</button>
+            </div>
+        </div>
+
+        <div class="card" style="padding: 20px;">
+            <div>
+                <table class="table" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th data-sortable="true">Name</th>
+                            <th data-sortable="true">Position</th>
+                            <th data-sortable="true">Office</th>
+                            <th data-sortable="true">Industry</th>
+                            <th data-sortable="true">Country</th>
+                            <th data-sortable="true">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {%for row in rep_data:%}
+                            <td>{{row.get('Business_name')}}</td>
+                            <td>{{row.get('position')}}</td>
+                            <td>{{row.get('city')}}</td>
+                            <td>{{row.get('industry')}}</td>
+                            <td>{{row.get('country')}}</td>
+                            <td>{{row.get('status')}}</td>
+                        </tr>
+                        {%endfor%}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+    </div>
+   
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/static/script.js"></script>
+
+    <!-- Include js-cookie library -->
+    <script>
+        function reload() {
+            window.location.href = '/yourClient';
+            console.log('hello')
+        }
+       
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.invoice-option');
+            
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    buttons.forEach(function (btn) {
+                        btn.classList.remove('active-invoice');
+                    });
+                    this.classList.add('active-invoice');
+                });
+            });
+        });
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+
+   
+
+        $(document).ready(function () {
+            // Hide optional sections initially
+            $("#show_1, #show_2, #show_3, #show_bank").hide();
+
+            // Toggle Tax Information section
+            $("#tab_1").on("click", function () {
+                $("#show_1").toggle();
+                $(".gamech").toggle();
+            });
+
+            // Toggle Address section
+            $("#tab_2").on("click", function () {
+                $("#show_2").toggle();
+            });
+
+            // Toggle Additional Details section
+            $("#tab_3").on("click", function () {
+                $("#show_3").toggle();
+            });
+
+            // Toggle Bank Details section
+            $("#bank_tab").on("click", function () {
+                $("#show_bank").toggle();
+            });
+        });
+
+    </script>
+</body>
+
+</html>
